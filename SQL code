@@ -34,14 +34,16 @@ INSERT INTO Category
 VALUES
 ('Sach giao duc'),
 ('Phu kien Laptop'),
-('Kinh vien thi'),
-('Thuoc nhuom toc'),
-('Chao chong dinh'),
+('Kinh mat'),
 ('Do gia dung'),
 ('Van hoc gia tuong'),
 ('Thoi trang nu'),
-('Ao phong'),
-('Duong moi');
+('Thoi trang nam'),
+('My pham'),
+('Thiet bi dien tu'),
+('The thao'),
+('Thu cung'),
+('Do choi');
 
 
 /* SELLERS TABLE */
