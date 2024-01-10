@@ -3,11 +3,11 @@ USE FinalProject;
 
 /* CUSTOMER TABLE */
 CREATE TABLE Customer(
-	Customer_Number SMALLINT IDENTITY(01, 1) PRIMARY KEY NOT NULL,
-	Name VARCHAR(30),
-	Email VARCHAR(30),
-	Phone_Number VARCHAR(15),
-	Address VARCHAR(30));
+	Cus_Num SMALLINT IDENTITY(01, 1) PRIMARY KEY NOT NULL,
+	Cus_Name VARCHAR(30),
+	Cus_Email VARCHAR(30),
+	Cus_Phone_Number VARCHAR(15),
+	Cus_Address VARCHAR(30));
 
 /* CUSTOMERS DATA */
 INSERT INTO Customer
@@ -26,7 +26,7 @@ VALUES
 
 /* CATEGORY TABLE */
 CREATE TABLE Category(
-	Category_Number SMALLINT IDENTITY (0001, 1) PRIMARY KEY NOT NULL,
+	Category_Num SMALLINT IDENTITY (0001, 1) PRIMARY KEY NOT NULL,
 	Category_Name VARCHAR(30));
 
 /* CATEGORY DATA */
@@ -46,10 +46,10 @@ VALUES
 
 /* SELLERS TABLE */
 CREATE TABLE Sellers (
-    Seller_Number SMALLINT IDENTITY(01, 1) PRIMARY KEY,
-    Name VARCHAR(50),
-    Phone_number VARCHAR(15),
-    Address VARCHAR(50),
+    Sell_Num SMALLINT IDENTITY(01, 1) PRIMARY KEY,
+    Sell_Name VARCHAR(50),
+    Sell_Phone_number VARCHAR(15),
+    Sell_Address VARCHAR(50),
     Followers INT,
 	Number_of_Products INT,
 );
@@ -68,15 +68,15 @@ VALUES
 ('Midori chans', '0879999667', 'Cau Giay, Ha Noi', 3600, 21),
 ('Co Mem Official Store', '1800.646.890', 'Dich Vong Hau, Cau Giay, Ha Noi', 608200, 215);
 
-drop table Product
+
 
 /* PRODUCT TABLE */
 CREATE TABLE Product (
-	Product_Number SMALLINT IDENTITY(01, 1) PRIMARY KEY NOT NULL,
-	Product_Name VARCHAR(50),
+	Pro_Num SMALLINT IDENTITY(01, 1) PRIMARY KEY NOT NULL,
+	Pro_Name VARCHAR(50),
 	Category_Number SMALLINT FOREIGN KEY REFERENCES Category(Category_Number),
-	Seller_Number SMALLINT FOREIGN KEY REFERENCES Sellers(Seller_Number),
-	Price REAL,
+	Sell_Numb SMALLINT FOREIGN KEY REFERENCES Sellers(Sell_Num),
+	Pro_Price REAL,
 	Stock_Quantities SMALLINT,
 );
 
@@ -118,13 +118,13 @@ VALUES
 (10, 11, 1, '15-May-2023');
 
 
-/* I am still working on this table and other tables below */
+
 
 /* CART TABLE */
 CREATE TABLE Cart (
     Cart_Number SMALLINT IDENTITY(000001, 1) PRIMARY KEY NOT NULL,
-    Customer_Number SMALLINT FOREIGN KEY REFERENCES Customer(Customer_Number),
-	Order_Number SMALLINT FOREIGN KEY REFERENCES Orders(Order_Number),
+    Cus_Num SMALLINT FOREIGN KEY REFERENCES Customer(Cus_Num),
+	Order_Num SMALLINT FOREIGN KEY REFERENCES Orders(Order_Num),
     Total_Items SMALLINT,
     Total_Price REAL
 );
@@ -145,11 +145,11 @@ VALUES
 
 /* SHIPMENT TABLE */
 CREATE TABLE Shipment(
-    Shipment_ID VARCHAR(30) PRIMARY KEY NOT NULL,
-    Order_Number SMALLINT FOREIGN KEY REFERENCES Orders(Order_Number),
+    Ship_ID VARCHAR(30) PRIMARY KEY NOT NULL,
+    Order_Num SMALLINT FOREIGN KEY REFERENCES Orders(Order_Num),
     Delivery_date DATE,
-	Address VARCHAR(50),
-    Shipment_Method VARCHAR(10));
+	Ship_Address VARCHAR(50),
+    Ship_Method VARCHAR(10));
 
 /* SHIPMENT DATA */
 INSERT INTO Shipment
@@ -167,10 +167,10 @@ VALUES
 
 /* PAYMENT TABLE */
 CREATE TABLE  Payment(
-    Payment_Number SMALLINT IDENTITY(001,1) PRIMARY KEY not null,  
-    Order_Number SMALLINT not null FOREIGN KEY REFERENCES Orders(Order_Number),
+    Pay_Num SMALLINT IDENTITY(001,1) PRIMARY KEY not null,  
+    Order_Num SMALLINT not null FOREIGN KEY REFERENCES Orders(Order_Num),
     Pay_date DATE,
-    Method VARCHAR(20));
+    Pay_Method VARCHAR(20));
 /* PAYMENT DATA */
 INSERT INTO Payment
 VALUES
@@ -188,10 +188,10 @@ VALUES
 
 /* DISCOUNT TABLE */
 CREATE TABLE  Discount(
-    DiscountNumber SMALLINT IDENTITY(1001,1) PRIMARY KEY not null,
-    ProductNumber SMALLINT not null FOREIGN KEY REFERENCES Product(Product_Number),
-    Discount_Code VARCHAR(10) not null,
-    Discount_Rate REAL not null,
+    Dis_Num SMALLINT IDENTITY(1001,1) PRIMARY KEY not null,
+    Pro_Num SMALLINT not null FOREIGN KEY REFERENCES Product(Pro_Num),
+    Dis_Code VARCHAR(10) not null,
+    Dis_Rate REAL not null,
     Start_Date DATE,
     Expire_Date DATE);
 /* DISCOUNT DATA */
@@ -209,8 +209,8 @@ VALUES
 ("SPPDECP4","30%","29-Dec-2023","4-Jan-2024");
 /* REVIEW TABLE */
 CREATE TABLE Review (
-    Review_Number SMALLINT IDENTITY (2001, 1)PRIMARY KEY,
-	Product_Number SMALLINT FOREIGN KEY REFERENCES Product(Product_Number),
+    Review_Num SMALLINT IDENTITY (2001, 1)PRIMARY KEY,
+	Pro_Num SMALLINT FOREIGN KEY REFERENCES Product(Pro_Num),
     Username VARCHAR(50),
     Rating SMALLINT,
     Date_of_Review DATE,
